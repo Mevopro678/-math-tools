@@ -11,7 +11,7 @@
         .game-card { background: #222; padding: 25px; border-radius: 10px; cursor: pointer; border: 2px solid #333; transition: 0.2s; }
         .game-card:hover { transform: scale(1.05); border-color: #4CAF50; background: #2a2a2a; }
         .game-title { font-size: 18px; font-weight: bold; color: #fff; }
-        /* Interactive full-screen view */
+        /* Clean Full-Screen View Overlay */
         #player-container { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; z-index: 999; }
         iframe { width: 100%; height: 100%; border: none; }
         .back-btn { position: absolute; top: 15px; left: 15px; background: #ff3b30; color: white; border: none; padding: 10px 15px; font-size: 16px; border-radius: 5px; cursor: pointer; font-weight: bold; z-index: 1000; }
@@ -22,18 +22,15 @@
     <h1>Study Prep Tool Kit</h1>
     <p>Select an assignment dashboard link to launch your testing module.</p>
 
-    <!-- GRID OF 10 UNBLOCKED GAMES -->
+    <!-- GRID OF 10 WORKING UNBLOCKED GAME MIRRORS -->
     <div class="grid">
-        <div class="game-card" onclick="playGame('https://eviltower.io/')">
-            <div class="game-title">EvilTower.io (Bloxd)</div>
+        <div class="game-card" onclick="playGame('https://bloxd.io/')">
+            <div class="game-title">Bloxd.io / EvilTower</div>
         </div>
         <div class="game-card" onclick="playGame('https://stickman-unblocked.github.io/')">
             <div class="game-title">Stickman Hook</div>
         </div>
-        <div class="game-card" onclick="playGame('https://github.io')">
-            <div class="game-title">Bloxd.io (Main)</div>
-        </div>
-        <div class="game-card" onclick="playGame('https://konggames.io')">
+        <div class="game-card" onclick="playGame('https://retrobowl25unblocked.github.io/')">
             <div class="game-title">Retro Bowl</div>
         </div>
         <div class="game-card" onclick="playGame('https://runner3.github.io/')">
@@ -45,14 +42,17 @@
         <div class="game-card" onclick="playGame('https://slopegame.github.io/')">
             <div class="game-title">Slope Game</div>
         </div>
-        <div class="game-card" onclick="playGame('https://mathadventure1.github.io/sm64/sm64/index.html')">
+        <div class="game-card" onclick="playGame('https://github.io')">
             <div class="game-title">Super Mario 64</div>
         </div>
         <div class="game-card" onclick="playGame('https://doodlecube.io')">
             <div class="game-title">Doodle Cube</div>
         </div>
-        <div class="game-card" onclick="playGame('https://cattn.github.io/gba/')">
+        <div class="game-card" onclick="playGame('https://github.io')">
             <div class="game-title">GBA Emulator Library</div>
+        </div>
+        <div class="game-card" onclick="playGame('https://1v1.lol')">
+            <div class="game-title">1v1.lol</div>
         </div>
     </div>
 
