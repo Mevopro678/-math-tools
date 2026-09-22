@@ -4,36 +4,158 @@
     <meta charset="UTF-8">
     <title>Math Homework Central</title>
     <style>
-        body { font-family: sans-serif; background-color: #111; color: white; text-align: center; margin: 0; padding: 20px; }
-        h1 { margin-bottom: 5px; font-size: 28px; color: #4CAF50; }
-        p { color: #888; margin-bottom: 30px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        .game-card { background: #222; padding: 25px; border-radius: 10px; cursor: pointer; border: 2px solid #333; transition: 0.2s; }
-        .game-card:hover { transform: scale(1.05); border-color: #4CAF50; background: #2a2a2a; }
-        .game-title { font-size: 18px; font-weight: bold; color: #fff; }
-        /* Clean Full-Screen View Overlay */
+        /* Base Styling & Dynamic Background Shapes */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #0d0e12; 
+            color: white; 
+            text-align: center; 
+            margin: 0; 
+            padding: 40px 20px; 
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Floating background shapes for depth */
+        body::before, body::after {
+            content: "";
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 45% 55% 70% 30% / 45% 45% 55% 55%;
+            background: linear-gradient(45deg, #4CAF50, #2196F3);
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: floatShapes 12s infinite linear alternate;
+        }
+        body::before { top: -50px; left: -50px; }
+        body::after { bottom: -50px; right: -50px; animation-delay: -6s; }
+
+        @keyframes floatShapes {
+            0% { transform: rotate(0deg) translate(0px, 0px) scale(1); }
+            100% { transform: rotate(360deg) translate(30px, 50px) scale(1.2); }
+        }
+
+        h1 { margin-bottom: 5px; font-size: 36px; color: #4CAF50; letter-spacing: 1px; font-weight: 800; }
+        p { color: #707585; margin-bottom: 40px; font-size: 16px; }
+        
+        /* Hexagon / Geometric Layout Grid */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 25px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+
+        /* Modern Glassmorphism Game Card */
+        .game-card { 
+            background: rgba(30, 32, 42, 0.6); 
+            padding: 30px 20px; 
+            border-radius: 16px; 
+            cursor: pointer; 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Geometric accent shape inside each card */
+        .game-card::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+
+        /* Hover animations */
+        .game-card:hover { 
+            transform: translateY(-8px); 
+            border-color: #4CAF50; 
+            box-shadow: 0 12px 24px rgba(76, 175, 80, 0.2);
+            background: rgba(35, 38, 50, 0.8);
+        }
+        .game-card:hover::before {
+            background: linear-gradient(135deg, #4CAF50, #2196F3);
+            width: 80px;
+            height: 80px;
+        }
+
+        .game-title { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+
+        /* Full Screen Portal View overlay */
         #player-container { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; z-index: 999; }
         iframe { width: 100%; height: 100%; border: none; }
-        .back-btn { position: absolute; top: 15px; left: 15px; background: #ff3b30; color: white; border: none; padding: 10px 15px; font-size: 16px; border-radius: 5px; cursor: pointer; font-weight: bold; z-index: 1000; }
+        .back-btn { position: absolute; top: 20px; left: 20px; background: #ff3b30; color: white; border: none; padding: 12px 20px; font-size: 15px; border-radius: 8px; cursor: pointer; font-weight: bold; z-index: 1000; box-shadow: 0 4px 14px rgba(255, 59, 48, 0.4); transition: 0.2s; }
+        .back-btn:hover { transform: scale(1.05); background: #e03228; }
     </style>
 </head>
 <body>
 
     <h1>Study Prep Tool Kit</h1>
-    <p>Select an assignment dashboard link to launch your testing module.</p>
+    <p>Select an authorized module below to begin practicing core competencies.</p>
 
-    <!-- GRID OF 10 WORKING UNBLOCKED GAME MIRRORS -->
+    <!-- GRID OF 10 GAMES WITH UPGRADED UI SHAPES -->
     <div class="grid">
-        <div class="game-card" onclick="playGame('https://bloxd.io/')">
+        <div class="game-card" onclick="playGame('https://bloxd.io')">
             <div class="game-title">Bloxd.io / EvilTower</div>
         </div>
-        <div class="game-card" onclick="playGame('https://stickman-unblocked.github.io/')">
+        <div class="game-card" onclick="playGame('https://github.io')">
             <div class="game-title">Stickman Hook</div>
         </div>
-        <div class="game-card" onclick="playGame('https://retrobowl25unblocked.github.io/')">
+        <div class="game-card" onclick="playGame('https://github.io')">
             <div class="game-title">Retro Bowl</div>
         </div>
-        <div class="game-card" onclick="playGame('https://runner3.github.io/')">
+        <div class="game-card" onclick="playGame('https://github.io')">
+            <div class="game-title">Run 3</div>
+        </div>
+        <div class="game-card" onclick="playGame('https://github.io')">
+            <div class="game-title">Tunnel Rush</div>
+        </div>
+        <div class="game-card" onclick="playGame('https://github.io')">
+            <div class="game-title">Slope Game</div>
+        </div>
+        <div class="game-card" onclick="playGame('https://github.io')">
+            <div class="game-title">Super Mario 64</div>
+        </div>
+        <div class="game-card" onclick="playGame('https://doodlecube.io')">
+            <div class="game-title">Doodle Cube</div>
+        </div>
+        <div class="game-card" onclick="playGame('https://github.io')">
+            <div class="game-title">GBA Emulator Library</div>
+        </div>
+        <div class="game-card" onclick="playGame('https://1v1.lol')">
+            <div class="game-title">1v1.lol</div>
+        </div>
+    </div>
+
+    <!-- WINDOW PORTAL PLAYER -->
+    <div id="player-container">
+        <button class="back-btn" onclick="closeGame()">↩ Back to Dashboard</button>
+        <iframe id="game-frame" src=""></iframe>
+    </div>
+
+    <script>
+        function playGame(url) {
+            document.getElementById('game-frame').src = url;
+            document.getElementById('player-container').style.display = 'block';
+        }
+        function closeGame() {
+            document.getElementById('player-container').style.display = 'none';
+            document.getElementById('game-frame').src = '';
+        }
+    </script>
+</body>
+</html>
             <div class="game-title">Run 3</div>
         </div>
         <div class="game-card" onclick="playGame('https://tunnelrush.github.io/')">
